@@ -1,5 +1,6 @@
 node_modules/
 .vercel/
+# local environment files
 .env
 .env.local
 .env.*.local
