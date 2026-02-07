@@ -1,0 +1,15 @@
+{
+  "name": "lugatlab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo \"Static frontend, Vercel serverless APIs\"",
+    "check": "node --check app.js && node --check api/push/subscribe.js && node --check api/jobs/send-daily-reminders.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.3",
+    "web-push": "^3.6.7"
+  }
+}

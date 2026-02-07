@@ -1,0 +1,127 @@
+﻿<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LugatLab - Inglizcha soz yodlash</title>
+  <meta name="description" content="Ingliz tili lugatini yodlash uchun quiz, progress va daily reminder sayti.">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="bg-shape bg-shape-a" aria-hidden="true"></div>
+  <div class="bg-shape bg-shape-b" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <p class="brand-kicker">Har kuni 10 ta savol</p>
+      <h1>LugatLab</h1>
+    </div>
+    <p id="session-badge" class="session-badge">Tekshirilmoqda...</p>
+  </header>
+
+  <main class="layout">
+    <section id="auth-view" class="card">
+      <h2>Hisobga kirish</h2>
+      <p class="muted">Emailingizni kiriting. Magic link shu emailga yuboriladi.</p>
+      <form id="auth-form" class="stack">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required placeholder="siz@example.com" autocomplete="email">
+        <button type="submit">Magic link yuborish</button>
+      </form>
+      <p id="auth-message" class="notice"></p>
+    </section>
+
+    <section id="app-view" class="hidden">
+      <nav class="tabs">
+        <button type="button" class="tab is-active" data-view="quiz-view">Quiz</button>
+        <button type="button" class="tab" data-view="stats-view">Statistika</button>
+        <button type="button" class="tab" data-view="settings-view">Sozlamalar</button>
+        <button type="button" id="logout-btn" class="tab tab-logout">Chiqish</button>
+      </nav>
+
+      <section id="quiz-view" class="card">
+        <div id="quiz-start-panel" class="stack">
+          <h2>Bugungi mashq</h2>
+          <p class="muted">10 ta savol. Har to'g'ri javob uchun 1 ball.</p>
+          <p id="quiz-word-count">Sozlar yuklanmoqda...</p>
+          <div class="inline-actions">
+            <button id="start-quiz-btn" type="button">Quizni boshlash</button>
+            <button id="reload-words-btn" type="button" class="ghost">Qayta yuklash</button>
+          </div>
+          <p id="quiz-load-message" class="notice"></p>
+        </div>
+
+        <div id="quiz-panel" class="hidden">
+          <div class="quiz-head">
+            <p id="quiz-progress">Savol 1 / 10</p>
+            <p id="quiz-score">Ball: 0</p>
+          </div>
+          <h3 id="quiz-prompt"></h3>
+          <p id="quiz-example" class="muted"></p>
+          <div id="quiz-options" class="options"></div>
+          <p id="quiz-feedback" class="notice"></p>
+        </div>
+
+        <div id="quiz-result-panel" class="hidden stack">
+          <h2>Natija</h2>
+          <p id="quiz-result-score" class="result-score"></p>
+          <p id="quiz-result-label"></p>
+          <button id="restart-quiz-btn" type="button">Yana ishlash</button>
+        </div>
+      </section>
+
+      <section id="stats-view" class="card hidden">
+        <h2>Statistika</h2>
+        <div class="stats-grid">
+          <article>
+            <p class="muted">Umumiy urinish</p>
+            <h3 id="stats-attempts">0</h3>
+          </article>
+          <article>
+            <p class="muted">Ortacha ball</p>
+            <h3 id="stats-average">0%</h3>
+          </article>
+          <article>
+            <p class="muted">Eng yuqori ball</p>
+            <h3 id="stats-best">0/10</h3>
+          </article>
+        </div>
+
+        <h3>Oxirgi urinishlar</h3>
+        <ul id="stats-recent-list" class="recent-list"></ul>
+      </section>
+
+      <section id="settings-view" class="card hidden">
+        <h2>Sozlamalar</h2>
+        <form id="settings-form" class="stack">
+          <label class="checkline" for="reminder-enabled">
+            <input id="reminder-enabled" type="checkbox">
+            Daily reminder yoqilsin
+          </label>
+
+          <label for="reminder-time">Eslatma vaqti</label>
+          <input id="reminder-time" type="time" value="20:00" required>
+
+          <label for="timezone">Timezone</label>
+          <input id="timezone" type="text" value="Asia/Tashkent" required>
+
+          <button type="submit">Saqlash</button>
+        </form>
+        <p id="settings-message" class="notice"></p>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script src="./app.config.js"></script>
+  <script>
+    window.APP_CONFIG = window.APP_CONFIG || {
+      SUPABASE_URL: "",
+      SUPABASE_ANON_KEY: "",
+      VAPID_PUBLIC_KEY: ""
+    };
+  </script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
