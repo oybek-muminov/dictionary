@@ -5,10 +5,4 @@
       "path": "/api/jobs/send-daily-reminders",
       "schedule": "0 0 * * *"
     }
-  ],
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
-}
+  ]}
